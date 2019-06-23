@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvMovieRate"
+            app:layout_constraintEnd_toStartOf="@id/dividerRate"
+            app:layout_constraintBottom_toTopOf="@id/rvGenreList"
             tools:text="MovieName"/>
 
         <View
@@ -24,8 +25,9 @@
             app:layout_constraintHorizontal_bias="0.8"
             android:layout_width="2dp"
             android:layout_height="40dp"
+            app:layout_constraintStart_toEndOf="@id/tvMovieName"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/rvGenreList"
             android:background="@color/colorSecPrimaryDark"
             app:layout_constraintEnd_toStartOf="@id/tvMovieRate" />
 
@@ -34,16 +36,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/dividerRate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/rvGenreList"
             tools:text="MovieRate"/>
 
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/rvGenreList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--tools:ignore="MissingConstraints">-->
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvGenreList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+        </android.support.v7.widget.RecyclerView>
 
     </android.support.constraint.ConstraintLayout>
 
