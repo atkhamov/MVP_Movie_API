@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.mvp_movie_api.R;
 import com.example.mvp_movie_api.adapter.MovieAdapter;
@@ -28,6 +29,8 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
     private MainPageContract.Presenter moviePresenter;
     private RecyclerView.LayoutManager layoutManager;
     private ProgressBar progressBar;
+    private TextView tvTopMovieName;
+    private TextView tvTopMovieRate;
 
 
     @Override
@@ -36,6 +39,8 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
         movieAdapter = new MovieAdapter();
         moviePresenter = new MainPagePresenter(this);
         progressBar = view.findViewById(R.id.progBar);
+        tvTopMovieName = view.findViewById(R.id.tvMovieName);
+        tvTopMovieRate = view.findViewById(R.id.tvMovieRate);
 
         //LinearLayoutManager layoutManager
         //    = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -69,7 +74,8 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
     @Override
     public void showMovies(List<MovieItemEntity> listMovieItemEntity) {
         movieAdapter.addMovieItemEntityList(listMovieItemEntity);
-
+        tvTopMovieName.setText(listMovieItemEntity.get(0).getTitle());
+        tvTopMovieRate.setText(String.valueOf(listMovieItemEntity.get(0).getVoteAverage()));
     }
 
     @Override
