@@ -3,24 +3,28 @@ package com.example.mvp_movie_api.rest;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NetServiceGenre {
+public class NetworkService {
 
-    private static NetServiceGenre netServiceGenre = new NetServiceGenre();
+    private static NetworkService netServiceGenre = new NetworkService();
 
     private Retrofit mRetrofit;
 
-    private NetServiceGenre(){
+    private NetworkService(){
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/genre/movie/")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    public static NetServiceGenre getInstanceGenre(){
+    public static NetworkService getInstance(){
         return netServiceGenre;
     }
 
     public GetGenreApi getGenreApi(){
         return mRetrofit.create(GetGenreApi.class);
+    }
+
+    public GetMovieApi getMovieApi(){
+        return mRetrofit.create(GetMovieApi.class);
     }
 }

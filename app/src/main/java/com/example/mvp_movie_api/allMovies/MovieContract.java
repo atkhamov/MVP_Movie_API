@@ -1,7 +1,9 @@
 package com.example.mvp_movie_api.allMovies;
 
 import com.example.mvp_movie_api.entities.GenreEntity;
+import com.example.mvp_movie_api.entities.GenreEntityWrapper;
 import com.example.mvp_movie_api.entities.MovieItemEntity;
+import com.example.mvp_movie_api.entities.MovieItemEntityWrapper;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public interface MovieContract {
     }
 
     interface Model{
-        Call<MovieItemEntity> getMovieList(String sort_by);
-        Call<GenreEntity> getGenreList(String language);
+        Call<MovieItemEntityWrapper> getMovieList(String sort_by);
+        Call<GenreEntityWrapper> getGenreList(String language);
     }
 }
