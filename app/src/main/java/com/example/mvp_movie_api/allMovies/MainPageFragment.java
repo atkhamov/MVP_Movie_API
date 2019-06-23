@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.mvp_movie_api.R;
 import com.example.mvp_movie_api.adapter.MovieAdapter;
@@ -26,6 +27,7 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
     private RecyclerView recyclerView;
     private MainPageContract.Presenter moviePresenter;
     private RecyclerView.LayoutManager layoutManager;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -33,13 +35,14 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
         super.onViewCreated(view, savedInstanceState);
         movieAdapter = new MovieAdapter();
         moviePresenter = new MainPagePresenter(this);
+        progressBar = view.findViewById(R.id.progBar);
 
         //LinearLayoutManager layoutManager
         //    = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
 
 
-        recyclerView = view.findViewById(R.id.recyclerAkmal);
+        recyclerView = view.findViewById(R.id.rvListMovies);
         recyclerView.setAdapter(movieAdapter);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -55,12 +58,12 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

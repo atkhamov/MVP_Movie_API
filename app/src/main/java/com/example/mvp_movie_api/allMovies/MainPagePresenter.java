@@ -19,6 +19,7 @@ public class MainPagePresenter implements MainPageContract.Presenter {
 
     @Override
     public void loadMovie(String sort_by) {
+        view.showLoading();
         Call<MovieItemEntityWrapper> call = model.getMovieList(sort_by);
         call.enqueue(new Callback<MovieItemEntityWrapper>() {
             @Override

@@ -27,8 +27,10 @@ public class MovieListViewHolder extends RecyclerView.ViewHolder {
         movieItemName.setText(String.valueOf(movieItemEntity.getTitle()));
         movieItemRate.setText(String.valueOf(movieItemEntity.getVoteAverage()));
 
+        String urlPoster = "https://image.tmdb.org/t/p/w185/" + movieItemEntity.getPosterPath();
+
         Glide.with(itemView)
-                .load(movieItemEntity.getPosterPath())
+                .load(urlPoster)
                 .into(moviePoster);
     }
 }
