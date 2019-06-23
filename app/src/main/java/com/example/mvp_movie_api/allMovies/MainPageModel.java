@@ -1,14 +1,12 @@
 package com.example.mvp_movie_api.allMovies;
 
-import com.example.mvp_movie_api.entities.GenreEntity;
 import com.example.mvp_movie_api.entities.GenreEntityWrapper;
-import com.example.mvp_movie_api.entities.MovieItemEntity;
 import com.example.mvp_movie_api.entities.MovieItemEntityWrapper;
 import com.example.mvp_movie_api.rest.NetworkService;
 
 import retrofit2.Call;
 
-public class MovieModel implements MovieContract.Model {
+public class MainPageModel implements MainPageContract.Model {
     @Override
     public Call<MovieItemEntityWrapper> getMovieList(String sort_by) {
         return NetworkService

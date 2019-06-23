@@ -1,21 +1,19 @@
 package com.example.mvp_movie_api.allMovies;
 
-import com.example.mvp_movie_api.entities.GenreEntity;
 import com.example.mvp_movie_api.entities.GenreEntityWrapper;
-import com.example.mvp_movie_api.entities.MovieItemEntity;
 import com.example.mvp_movie_api.entities.MovieItemEntityWrapper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviePresenter implements MovieContract.Presenter {
+public class MainPagePresenter implements MainPageContract.Presenter {
 
-    private MovieContract.Model model;
-    private MovieContract.View view;
+    private MainPageContract.Model model;
+    private MainPageContract.View view;
 
-    public MoviePresenter(MovieContract.View view){
-        this.model = new MovieModel();
+    public MainPagePresenter(MainPageContract.View view){
+        this.model = new MainPageModel();
         this.view = view;
     }
 
