@@ -44,13 +44,13 @@ public class MainPagePresenter implements MainPageContract.Presenter {
         call.enqueue(new Callback<GenreEntityWrapper>() {
             @Override
             public void onResponse(Call<GenreEntityWrapper> call, Response<GenreEntityWrapper> response) {
-                view.hideLoading();
+//                view.hideLoading();
                 view.showGenres(response.body().getGenreEntityList());
             }
 
             @Override
             public void onFailure(Call<GenreEntityWrapper> call, Throwable t) {
-                view.hideLoading();
+//                view.hideLoading();
                 view.showError(t);
             }
         });

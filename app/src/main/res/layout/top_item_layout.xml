@@ -14,29 +14,30 @@
             android:id="@+id/tvMovieName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="12dp"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/dividerRate"
             app:layout_constraintBottom_toTopOf="@id/rvGenreList"
             tools:text="MovieName"/>
 
         <View
             android:id="@+id/dividerRate"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="1"
+            android:layout_marginEnd="12dp"
             android:layout_width="2dp"
             android:layout_height="40dp"
             app:layout_constraintStart_toEndOf="@id/tvMovieName"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/rvGenreList"
             android:background="@color/colorSecPrimaryDark"
-            app:layout_constraintEnd_toStartOf="@id/tvMovieRate" />
+            app:layout_constraintEnd_toStartOf="@id/tvMovieRate"
+            android:layout_marginRight="12dp" />
 
         <TextView
             android:id="@+id/tvMovieRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="12dp"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@id/dividerRate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/rvGenreList"
             tools:text="MovieRate"/>

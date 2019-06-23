@@ -1,7 +1,5 @@
 package com.example.mvp_movie_api.allMovies;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.mvp_movie_api.R;
+import com.example.mvp_movie_api.adapter.GenreAdapter;
 import com.example.mvp_movie_api.adapter.MovieAdapter;
 import com.example.mvp_movie_api.entities.GenreEntity;
 import com.example.mvp_movie_api.entities.MovieItemEntity;
@@ -25,33 +24,43 @@ import java.util.List;
 public class MainPageFragment extends Fragment implements MainPageContract.View {
 
     private MovieAdapter movieAdapter;
-    private RecyclerView recyclerView;
-    private MainPageContract.Presenter moviePresenter;
+    private RecyclerView recyclerViewMovies;
+    private MainPageContract.Presenter mainPagePresenter;
     private RecyclerView.LayoutManager layoutManager;
     private ProgressBar progressBar;
     private TextView tvTopMovieName;
     private TextView tvTopMovieRate;
+
+    private RecyclerView recyclerViewGenre;
+    private GenreAdapter genreAdapter;
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         movieAdapter = new MovieAdapter();
-        moviePresenter = new MainPagePresenter(this);
+        mainPagePresenter = new MainPagePresenter(this);
         progressBar = view.findViewById(R.id.progBar);
         tvTopMovieName = view.findViewById(R.id.tvMovieName);
         tvTopMovieRate = view.findViewById(R.id.tvMovieRate);
+
 
         //LinearLayoutManager layoutManager
         //    = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
 
 
-        recyclerView = view.findViewById(R.id.rvListMovies);
-        recyclerView.setAdapter(movieAdapter);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerViewMovies = view.findViewById(R.id.rvListMovies);
+        recyclerViewMovies.setAdapter(movieAdapter);
+        recyclerViewMovies.setLayoutManager(layoutManager);
+        mainPagePresenter.loadMovie("popularity.desc");
 
-        moviePresenter.loadMovie("popularity.desc");
+
+        recyclerViewGenre = view.findViewById(R.id.rvGenreList);
+        genreAdapter = new GenreAdapter();
+        recyclerViewGenre.setAdapter(genreAdapter);
+        recyclerViewGenre.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mainPagePresenter.loadGenre("en-US");
     }
 
     @Override
