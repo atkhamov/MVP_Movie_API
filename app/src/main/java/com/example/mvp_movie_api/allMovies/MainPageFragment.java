@@ -15,13 +15,14 @@ import android.widget.TextView;
 import com.example.mvp_movie_api.R;
 import com.example.mvp_movie_api.adapter.GenreAdapter;
 import com.example.mvp_movie_api.adapter.MovieAdapter;
+import com.example.mvp_movie_api.adapter.ReachEndListener;
 import com.example.mvp_movie_api.entities.GenreEntity;
 import com.example.mvp_movie_api.entities.MovieItemEntity;
 
 import java.util.List;
 
 
-public class MainPageFragment extends Fragment implements MainPageContract.View {
+public class MainPageFragment extends Fragment implements MainPageContract.View, ReachEndListener {
 
     private MovieAdapter movieAdapter;
     private RecyclerView recyclerViewMovies;
@@ -30,6 +31,8 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
     private ProgressBar progressBar;
     private TextView tvTopMovieName;
     private TextView tvTopMovieRate;
+    private TextView tvGenreName;
+    private int page;
 
     private RecyclerView recyclerViewGenre;
     private GenreAdapter genreAdapter;
@@ -43,6 +46,7 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
         progressBar = view.findViewById(R.id.progBar);
         tvTopMovieName = view.findViewById(R.id.tvMovieName);
         tvTopMovieRate = view.findViewById(R.id.tvMovieRate);
+        tvGenreName = view.findViewById(R.id.tvGenreName);
 
 
         //LinearLayoutManager layoutManager
@@ -53,7 +57,7 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
         recyclerViewMovies = view.findViewById(R.id.rvListMovies);
         recyclerViewMovies.setAdapter(movieAdapter);
         recyclerViewMovies.setLayoutManager(layoutManager);
-        mainPagePresenter.loadMovie("popularity.desc");
+        mainPagePresenter.loadMovie(1);
 
 
         recyclerViewGenre = view.findViewById(R.id.rvGenreList);
@@ -89,11 +93,18 @@ public class MainPageFragment extends Fragment implements MainPageContract.View 
 
     @Override
     public void showGenres(List<GenreEntity> listGenreEntity) {
-
+//        genreAdapter.addGenreEntityList(listGenreEntity);
+//        tvGenreName.setText(listGenreEntity.get(0).getName());
     }
 
     @Override
     public void showError(Throwable throwable) {
 
+    }
+
+    @Override
+    public void onReachEnd() {
+        page++;
+        mainPagePresenter.loadMovie(page);
     }
 }

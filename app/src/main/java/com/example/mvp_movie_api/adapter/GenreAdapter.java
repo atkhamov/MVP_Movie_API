@@ -8,13 +8,36 @@ import android.view.ViewGroup;
 
 import com.example.mvp_movie_api.R;
 import com.example.mvp_movie_api.entities.GenreEntity;
+import com.example.mvp_movie_api.entities.GenreEntityWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreListViewHolder> {
 
     private GenreListViewHolder genreListViewHolder;
-    private List<GenreEntity> genreList;
+    private List<GenreEntityWrapper> genreList;
+    private List<GenreEntity> genreEntityList;
+
+
+    private List<GenreEntity> getGenreEntityList(){
+        return genreEntityList;
+    }
+
+    public GenreAdapter(){
+        this.genreEntityList = new ArrayList<>();
+    }
+
+    public void setGenreEntityList(List<GenreEntity> genreEntityList){
+        this.genreEntityList.clear();
+        this.genreEntityList.addAll(genreEntityList);
+        notifyDataSetChanged();
+    }
+
+    public void addGenreEntityList(List<GenreEntity> genreEntityList){
+        this.genreEntityList.addAll(genreEntityList);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -31,6 +54,6 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreListViewHolder> {
 
     @Override
     public int getItemCount() {
-        return genreList.size();
+        return genreEntityList.size();
     }
 }

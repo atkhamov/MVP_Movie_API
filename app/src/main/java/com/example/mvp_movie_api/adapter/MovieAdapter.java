@@ -16,10 +16,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieListViewHolder> {
 
     private MovieListViewHolder movieListViewHolder;
     private List<MovieItemEntity> movieItemEntityList;
+    private ReachEndListener reachEndListener;
 
     public List<MovieItemEntity> getMovieItemEntityList(){
         return movieItemEntityList;
     }
+
+    /**ReachEndListener - for loading the rest of the list of Movies*/
+    public void setReachEndListener(ReachEndListener reachEndListener){
+        this.reachEndListener = reachEndListener;
+    }
+    /**endRegion*/
 
     public MovieAdapter(){
         this.movieItemEntityList = new ArrayList<>();
@@ -47,6 +54,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieListViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MovieListViewHolder movieListViewHolder, int position) {
         movieListViewHolder.bind(movieItemEntityList.get(position));
+
+        if(position >= movieItemEntityList.size() - 3){
+            if(reachEndListener != null){
+                reachEndListener.onReachEnd();
+            }
+        }
     }
 
     @Override

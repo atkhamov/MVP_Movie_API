@@ -18,9 +18,9 @@ public class MainPagePresenter implements MainPageContract.Presenter {
     }
 
     @Override
-    public void loadMovie(String sort_by) {
+    public void loadMovie(int page) {
         view.showLoading();
-        Call<MovieItemEntityWrapper> call = model.getMovieList(sort_by);
+        Call<MovieItemEntityWrapper> call = model.getMovieList(page);
         call.enqueue(new Callback<MovieItemEntityWrapper>() {
             @Override
             public void onResponse(Call<MovieItemEntityWrapper> call, Response<MovieItemEntityWrapper> response) {
@@ -34,8 +34,6 @@ public class MainPagePresenter implements MainPageContract.Presenter {
                 view.showError(t);
             }
         });
-
-
     }
 
     @Override
@@ -46,6 +44,7 @@ public class MainPagePresenter implements MainPageContract.Presenter {
             public void onResponse(Call<GenreEntityWrapper> call, Response<GenreEntityWrapper> response) {
 //                view.hideLoading();
                 view.showGenres(response.body().getGenreEntityList());
+                //System.out.println(response.body().getGenreEntityList());
             }
 
             @Override
@@ -54,19 +53,5 @@ public class MainPagePresenter implements MainPageContract.Presenter {
                 view.showError(t);
             }
         });
-//        Call<GenreEntity> call = model.getGenreList(language);
-//        call.enqueue(new Callback<GenreEntity>() {
-//            @Override
-//            public void onResponse(Call<GenreEntity> call, Response<GenreEntity> response) {
-//                view.hideLoading();
-//                view.showGenres(response.body().);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<GenreEntity> call, Throwable t) {
-//                view.hideLoading();
-//                view.showError(t);
-//            }
-//        });
     }
 }

@@ -13,7 +13,8 @@ public interface GetMovieApi {
     Call<MovieItemEntityWrapper> getMovieItemList(
             @Query("api_key") String apiKey,
             @Query("language") String lang,
-            @Query("sort_by") String sort
+            @Query("sort_by") String sort,
+            @Query("page") int page
     );
 
 }

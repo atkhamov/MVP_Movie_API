@@ -20,12 +20,12 @@ public interface MainPageContract {
     }
 
     interface Presenter{
-        void loadMovie(String sort_by);
+        void loadMovie(int page);
         void loadGenre(String language);
     }
 
     interface Model{
-        Call<MovieItemEntityWrapper> getMovieList(String sort_by);
+        Call<MovieItemEntityWrapper> getMovieList(int page);
         Call<GenreEntityWrapper> getGenreList(String language);
     }
 }

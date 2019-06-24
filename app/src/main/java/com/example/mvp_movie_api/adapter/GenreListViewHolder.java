@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.mvp_movie_api.R;
 import com.example.mvp_movie_api.entities.GenreEntity;
+import com.example.mvp_movie_api.entities.GenreEntityWrapper;
 
 public class GenreListViewHolder extends RecyclerView.ViewHolder {
 
@@ -17,7 +18,7 @@ public class GenreListViewHolder extends RecyclerView.ViewHolder {
         this.tvGenreName = itemView.findViewById(R.id.tvGenreName);
     }
 
-    public void bind(GenreEntity genreEntity) {
-        tvGenreName.setText(String.valueOf(genreEntity.getName()));
+    public void bind(GenreEntityWrapper genreEntity) {
+        tvGenreName.setText(String.valueOf(genreEntity.getGenreEntityList()));
     }
 }

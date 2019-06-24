@@ -8,11 +8,11 @@ import retrofit2.Call;
 
 public class MainPageModel implements MainPageContract.Model {
     @Override
-    public Call<MovieItemEntityWrapper> getMovieList(String sort_by) {
+    public Call<MovieItemEntityWrapper> getMovieList(int page) {
         return NetworkService
                 .getInstance()
                 .getMovieApi()
-                .getMovieItemList("e9ba83833d52641138a17e76413d2f32", "en-US", sort_by);
+                .getMovieItemList("e9ba83833d52641138a17e76413d2f32", "en-US", "popularity.desc", page);
     }
 
     @Override
