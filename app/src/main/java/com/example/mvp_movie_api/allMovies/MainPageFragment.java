@@ -58,6 +58,7 @@ public class MainPageFragment extends Fragment implements MainPageContract.View,
         recyclerViewMovies.setAdapter(movieAdapter);
         recyclerViewMovies.setLayoutManager(layoutManager);
         mainPagePresenter.loadMovie(1);
+        movieAdapter.setReachEndListener(this);
 
 
         recyclerViewGenre = view.findViewById(R.id.rvGenreList);
